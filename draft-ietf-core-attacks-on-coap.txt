@@ -212,28 +212,28 @@ Table of Contents
    resource, and command.  The blocking attack is illustrated in Figures
    1 and 2.
 
-                 Client   Foe   Server
-                    |      |      |
-                    +----->X      |      Code: 0.03 (PUT)
-                    | PUT  |      |     Token: 0x47
-                    |      |      |  Uri-Path: lock
-                    |      |      |   Payload: 1 (Lock)
-                    |      |      |
+                Client    Foe    Server
+                   |       |       |
+                   +-----> X       |      Code: 0.03 (PUT)
+                   | PUT   |       |     Token: 0x47
+                   |       |       |  Uri-Path: lock
+                   |       |       |   Payload: 1 (Lock)
+                   |       |       |
 
                         Figure 1: Blocking a request
 
    Where 'X' means the attacker is blocking delivery of the message.
 
-               Client   Foe   Server
-                  |      |      |
-                  +------------>|      Code: 0.03 (PUT)
-                  |      | PUT  |     Token: 0x47
-                  |      |      |  Uri-Path: lock
-                  |      |      |   Payload: 1 (Lock)
-                  |      |      |
-                  |      X<-----+      Code: 2.04 (Changed)
-                  |      | 2.04 |     Token: 0x47
-                  |      |      |
+              Client    Foe    Server
+                 |       |       |
+                 +-------------->|      Code: 0.03 (PUT)
+                 |       |  PUT  |     Token: 0x47
+                 |       |       |  Uri-Path: lock
+                 |       |       |   Payload: 1 (Lock)
+                 |       |       |
+                 |       X <-----+      Code: 2.04 (Changed)
+                 |       |  2.04 |     Token: 0x47
+                 |       |       |
 
                        Figure 2: Blocking a response
 
@@ -280,23 +280,23 @@ Table of Contents
    transmits while at the same time jamming the server.  The request
    delay attack is illustrated in Figure 3.
 
-               Client   Foe   Server
-                  |      |      |
-                  +----->@      |      Code: 0.03 (PUT)
-                  | PUT  |      |     Token: 0x9c
-                  |      |      |  Uri-Path: lock
-                  |      |      |   Payload: 0 (Unlock)
-                  |      |      |
-                    ....   ....
-                  |      |      |
-                  |      @----->|      Code: 0.03 (PUT)
-                  |      | PUT  |     Token: 0x9c
-                  |      |      |  Uri-Path: lock
-                  |      |      |   Payload: 0 (Unlock)
-                  |      |      |
-                  |      X<-----+      Code: 2.04 (Changed)
-                  |      | 2.04 |     Token: 0x9c
-                  |      |      |
+              Client    Foe    Server
+                 |       |       |
+                 +-----> @       |      Code: 0.03 (PUT)
+                 | PUT   |       |     Token: 0x9c
+                 |       |       |  Uri-Path: lock
+                 |       |       |   Payload: 0 (Unlock)
+                 |       |       |
+                    ...     ...
+                 |       |       |
+                 |       @------>|      Code: 0.03 (PUT)
+                 |       |  PUT  |     Token: 0x9c
+                 |       |       |  Uri-Path: lock
+                 |       |       |   Payload: 0 (Unlock)
+                 |       |       |
+                 |       X <-----+      Code: 2.04 (Changed)
+                 |       |  2.04 |     Token: 0x9c
+                 |       |       |
 
                         Figure 3: Delaying a request
 

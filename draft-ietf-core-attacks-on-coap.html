@@ -1340,16 +1340,34 @@ may be enough to determine the server, resource, and command.  The blocking
 attack is illustrated in Figures <a href="#blockreq" class="auto internal xref">1</a> and <a href="#blockres" class="auto internal xref">2</a>.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <span id="name-blocking-a-request"></span><div id="blockreq">
 <figure id="figure-1">
-          <div class="alignCenter art-text artwork" id="section-2.1-2.1">
-<pre>
-Client   Foe   Server
-   |      |      |
-   +-----&gt;X      |      Code: 0.03 (PUT)
-   | PUT  |      |     Token: 0x47
-   |      |      |  Uri-Path: lock
-   |      |      |   Payload: 1 (Lock)
-   |      |      |
-</pre>
+          <div id="section-2.1-2.1">
+            <div class="alignCenter art-svg artwork" id="section-2.1-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="144" width="344" viewBox="0 0 344 144" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+                <path d="M 32,48 L 32,128" fill="none" stroke="black"></path>
+                <path d="M 96,80 L 96,128" fill="none" stroke="black"></path>
+                <path d="M 160,48 L 160,128" fill="none" stroke="black"></path>
+                <path d="M 32,64 L 80,64" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="88,64 76,58.4 76,69.6" fill="black" transform="rotate(0,80,64)"></polygon>
+                <g class="text">
+                  <text x="28" y="36">Client</text>
+                  <text x="96" y="36">Foe</text>
+                  <text x="164" y="36">Server</text>
+                  <text x="96" y="52">|</text>
+                  <text x="96" y="68">X</text>
+                  <text x="232" y="68">Code:</text>
+                  <text x="276" y="68">0.03</text>
+                  <text x="320" y="68">(PUT)</text>
+                  <text x="56" y="84">PUT</text>
+                  <text x="228" y="84">Token:</text>
+                  <text x="276" y="84">0x47</text>
+                  <text x="216" y="100">Uri-Path:</text>
+                  <text x="276" y="100">lock</text>
+                  <text x="220" y="116">Payload:</text>
+                  <text x="264" y="116">1</text>
+                  <text x="300" y="116">(Lock)</text>
+                </g>
+              </svg><a href="#section-2.1-2.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-blocking-a-request" class="selfRef">Blocking a request</a>
@@ -1358,19 +1376,43 @@ Client   Foe   Server
 <p id="section-2.1-3">Where 'X' means the attacker is blocking delivery of the message.<a href="#section-2.1-3" class="pilcrow">¶</a></p>
 <span id="name-blocking-a-response"></span><div id="blockres">
 <figure id="figure-2">
-          <div class="alignCenter art-text artwork" id="section-2.1-4.1">
-<pre>
-Client   Foe   Server
-   |      |      |
-   +------------&gt;|      Code: 0.03 (PUT)
-   |      | PUT  |     Token: 0x47
-   |      |      |  Uri-Path: lock
-   |      |      |   Payload: 1 (Lock)
-   |      |      |
-   |      X&lt;-----+      Code: 2.04 (Changed)
-   |      | 2.04 |     Token: 0x47
-   |      |      |
-</pre>
+          <div id="section-2.1-4.1">
+            <div class="alignCenter art-svg artwork" id="section-2.1-4.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="192" width="376" viewBox="0 0 376 192" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+                <path d="M 32,48 L 32,176" fill="none" stroke="black"></path>
+                <path d="M 96,72 L 96,128" fill="none" stroke="black"></path>
+                <path d="M 96,160 L 96,176" fill="none" stroke="black"></path>
+                <path d="M 160,48 L 160,176" fill="none" stroke="black"></path>
+                <path d="M 32,64 L 152,64" fill="none" stroke="black"></path>
+                <path d="M 112,144 L 160,144" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="160,64 148,58.4 148,69.6" fill="black" transform="rotate(0,152,64)"></polygon>
+                <polygon class="arrowhead" points="120,144 108,138.4 108,149.6" fill="black" transform="rotate(180,112,144)"></polygon>
+                <g class="text">
+                  <text x="28" y="36">Client</text>
+                  <text x="96" y="36">Foe</text>
+                  <text x="164" y="36">Server</text>
+                  <text x="96" y="52">|</text>
+                  <text x="232" y="68">Code:</text>
+                  <text x="276" y="68">0.03</text>
+                  <text x="320" y="68">(PUT)</text>
+                  <text x="128" y="84">PUT</text>
+                  <text x="228" y="84">Token:</text>
+                  <text x="276" y="84">0x47</text>
+                  <text x="216" y="100">Uri-Path:</text>
+                  <text x="276" y="100">lock</text>
+                  <text x="220" y="116">Payload:</text>
+                  <text x="264" y="116">1</text>
+                  <text x="300" y="116">(Lock)</text>
+                  <text x="96" y="148">X</text>
+                  <text x="232" y="148">Code:</text>
+                  <text x="276" y="148">2.04</text>
+                  <text x="336" y="148">(Changed)</text>
+                  <text x="132" y="164">2.04</text>
+                  <text x="228" y="164">Token:</text>
+                  <text x="276" y="164">0x47</text>
+                </g>
+              </svg><a href="#section-2.1-4.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
 <a href="#name-blocking-a-response" class="selfRef">Blocking a response</a>
@@ -1418,26 +1460,64 @@ at the same time jamming the server. The request delay attack is illustrated
 in <a href="#delayreq" class="auto internal xref">Figure 3</a>.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
 <span id="name-delaying-a-request"></span><div id="delayreq">
 <figure id="figure-3">
-          <div class="alignCenter art-text artwork" id="section-2.2-3.1">
-<pre>
-Client   Foe   Server
-   |      |      |
-   +-----&gt;@      |      Code: 0.03 (PUT)
-   | PUT  |      |     Token: 0x9c
-   |      |      |  Uri-Path: lock
-   |      |      |   Payload: 0 (Unlock)
-   |      |      |
-     ....   ....
-   |      |      |
-   |      @-----&gt;|      Code: 0.03 (PUT)
-   |      | PUT  |     Token: 0x9c
-   |      |      |  Uri-Path: lock
-   |      |      |   Payload: 0 (Unlock)
-   |      |      |
-   |      X&lt;-----+      Code: 2.04 (Changed)
-   |      | 2.04 |     Token: 0x9c
-   |      |      |
-</pre>
+          <div id="section-2.2-3.1">
+            <div class="alignCenter art-svg artwork" id="section-2.2-3.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="376" viewBox="0 0 376 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+                <path d="M 32,48 L 32,128" fill="none" stroke="black"></path>
+                <path d="M 32,160 L 32,288" fill="none" stroke="black"></path>
+                <path d="M 96,80 L 96,128" fill="none" stroke="black"></path>
+                <path d="M 96,192 L 96,240" fill="none" stroke="black"></path>
+                <path d="M 96,272 L 96,288" fill="none" stroke="black"></path>
+                <path d="M 160,48 L 160,128" fill="none" stroke="black"></path>
+                <path d="M 160,160 L 160,288" fill="none" stroke="black"></path>
+                <path d="M 32,64 L 80,64" fill="none" stroke="black"></path>
+                <path d="M 104,176 L 152,176" fill="none" stroke="black"></path>
+                <path d="M 112,256 L 160,256" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="160,176 148,170.4 148,181.6" fill="black" transform="rotate(0,152,176)"></polygon>
+                <polygon class="arrowhead" points="120,256 108,250.4 108,261.6" fill="black" transform="rotate(180,112,256)"></polygon>
+                <polygon class="arrowhead" points="88,64 76,58.4 76,69.6" fill="black" transform="rotate(0,80,64)"></polygon>
+                <g class="text">
+                  <text x="28" y="36">Client</text>
+                  <text x="96" y="36">Foe</text>
+                  <text x="164" y="36">Server</text>
+                  <text x="96" y="52">|</text>
+                  <text x="96" y="68">@</text>
+                  <text x="232" y="68">Code:</text>
+                  <text x="276" y="68">0.03</text>
+                  <text x="320" y="68">(PUT)</text>
+                  <text x="56" y="84">PUT</text>
+                  <text x="228" y="84">Token:</text>
+                  <text x="276" y="84">0x9c</text>
+                  <text x="216" y="100">Uri-Path:</text>
+                  <text x="276" y="100">lock</text>
+                  <text x="220" y="116">Payload:</text>
+                  <text x="264" y="116">0</text>
+                  <text x="308" y="116">(Unlock)</text>
+                  <text x="64" y="148">...</text>
+                  <text x="128" y="148">...</text>
+                  <text x="96" y="164">|</text>
+                  <text x="96" y="180">@</text>
+                  <text x="232" y="180">Code:</text>
+                  <text x="276" y="180">0.03</text>
+                  <text x="320" y="180">(PUT)</text>
+                  <text x="128" y="196">PUT</text>
+                  <text x="228" y="196">Token:</text>
+                  <text x="276" y="196">0x9c</text>
+                  <text x="216" y="212">Uri-Path:</text>
+                  <text x="276" y="212">lock</text>
+                  <text x="220" y="228">Payload:</text>
+                  <text x="264" y="228">0</text>
+                  <text x="308" y="228">(Unlock)</text>
+                  <text x="96" y="260">X</text>
+                  <text x="232" y="260">Code:</text>
+                  <text x="276" y="260">2.04</text>
+                  <text x="336" y="260">(Changed)</text>
+                  <text x="132" y="276">2.04</text>
+                  <text x="228" y="276">Token:</text>
+                  <text x="276" y="276">0x9c</text>
+                </g>
+              </svg><a href="#section-2.2-3.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-delaying-a-request" class="selfRef">Delaying a request</a>
