@@ -2023,31 +2023,106 @@ time the client acts on it, the server has already executed the
 unauthorized action.<a href="#section-2.4.1-1" class="pilcrow">¶</a></p>
 <span id="name-completing-an-operation-with"></span><div id="promotevaljean">
 <figure id="figure-8">
-            <div class="alignLeft art-text artwork" id="section-2.4.1-2.1">
-<pre>
-Client   Foe   Server
-   |      |      |
-   +-------------&gt;    POST "incarcerate" (Block1: 0, more to come)
-   |      |      |
-   &lt;-------------+    2.31 Continue (Block1: 0 received, send more)
-   |      |      |
-   +-----&gt;@      |    POST "valjean" (Block1: 1, last block)
-   |      |      |
-   +-----&gt;X      |    All retransmissions dropped
-   |      |      |
-
-(Client: Odd, but let's go on and promote Javert)
-
-   |      |      |
-   +-------------&gt;    POST "promote" (Block1: 0, more to come)
-   |      |      |
-   |      X&lt;-----+    2.31 Continue (Block1: 0 received, send more)
-   |      |      |
-   |      @------&gt;    POST "valjean" (Block1: 1, last block)
-   |      |      |
-   |      X&lt;-----+    2.04 Valjean Promoted
-   |      |      |
-</pre>
+            <div id="section-2.4.1-2.1">
+              <div class="alignLeft art-svg artwork" id="section-2.4.1-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="384" width="560" viewBox="0 0 560 384" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+                  <path d="M 32,48 L 32,176" fill="none" stroke="black"></path>
+                  <path d="M 32,240 L 32,368" fill="none" stroke="black"></path>
+                  <path d="M 160,48 L 160,176" fill="none" stroke="black"></path>
+                  <path d="M 160,240 L 160,368" fill="none" stroke="black"></path>
+                  <path d="M 32,64 L 152,64" fill="none" stroke="black"></path>
+                  <path d="M 40,96 L 160,96" fill="none" stroke="black"></path>
+                  <path d="M 32,128 L 80,128" fill="none" stroke="black"></path>
+                  <path d="M 32,160 L 80,160" fill="none" stroke="black"></path>
+                  <path d="M 32,256 L 152,256" fill="none" stroke="black"></path>
+                  <path d="M 112,288 L 160,288" fill="none" stroke="black"></path>
+                  <path d="M 104,320 L 152,320" fill="none" stroke="black"></path>
+                  <path d="M 112,352 L 160,352" fill="none" stroke="black"></path>
+                  <polygon class="arrowhead" points="160,320 148,314.4 148,325.6" fill="black" transform="rotate(0,152,320)"></polygon>
+                  <polygon class="arrowhead" points="160,256 148,250.4 148,261.6" fill="black" transform="rotate(0,152,256)"></polygon>
+                  <polygon class="arrowhead" points="160,64 148,58.4 148,69.6" fill="black" transform="rotate(0,152,64)"></polygon>
+                  <polygon class="arrowhead" points="120,352 108,346.4 108,357.6" fill="black" transform="rotate(180,112,352)"></polygon>
+                  <polygon class="arrowhead" points="120,288 108,282.4 108,293.6" fill="black" transform="rotate(180,112,288)"></polygon>
+                  <polygon class="arrowhead" points="88,160 76,154.4 76,165.6" fill="black" transform="rotate(0,80,160)"></polygon>
+                  <polygon class="arrowhead" points="88,128 76,122.4 76,133.6" fill="black" transform="rotate(0,80,128)"></polygon>
+                  <polygon class="arrowhead" points="48,96 36,90.4 36,101.6" fill="black" transform="rotate(180,40,96)"></polygon>
+                  <g class="text">
+                    <text x="28" y="36">Client</text>
+                    <text x="88" y="36">Foe</text>
+                    <text x="148" y="36">Server</text>
+                    <text x="96" y="52">|</text>
+                    <text x="212" y="68">POST</text>
+                    <text x="288" y="68">"incarcerate"</text>
+                    <text x="380" y="68">(Block1:</text>
+                    <text x="428" y="68">0,</text>
+                    <text x="460" y="68">more</text>
+                    <text x="492" y="68">to</text>
+                    <text x="528" y="68">come)</text>
+                    <text x="96" y="84">|</text>
+                    <text x="212" y="100">2.31</text>
+                    <text x="268" y="100">Continue</text>
+                    <text x="340" y="100">(Block1:</text>
+                    <text x="384" y="100">0</text>
+                    <text x="432" y="100">received,</text>
+                    <text x="492" y="100">send</text>
+                    <text x="536" y="100">more)</text>
+                    <text x="96" y="116">|</text>
+                    <text x="96" y="132">@</text>
+                    <text x="212" y="132">POST</text>
+                    <text x="272" y="132">"valjean"</text>
+                    <text x="348" y="132">(Block1:</text>
+                    <text x="396" y="132">1,</text>
+                    <text x="428" y="132">last</text>
+                    <text x="476" y="132">block)</text>
+                    <text x="96" y="148">|</text>
+                    <text x="96" y="164">X</text>
+                    <text x="208" y="164">All</text>
+                    <text x="288" y="164">retransmissions</text>
+                    <text x="384" y="164">dropped</text>
+                    <text x="96" y="180">|</text>
+                    <text x="36" y="212">(Client:</text>
+                    <text x="92" y="212">Odd,</text>
+                    <text x="128" y="212">but</text>
+                    <text x="168" y="212">let's</text>
+                    <text x="204" y="212">go</text>
+                    <text x="228" y="212">on</text>
+                    <text x="256" y="212">and</text>
+                    <text x="304" y="212">promote</text>
+                    <text x="368" y="212">Javert)</text>
+                    <text x="96" y="244">|</text>
+                    <text x="212" y="260">POST</text>
+                    <text x="272" y="260">"promote"</text>
+                    <text x="348" y="260">(Block1:</text>
+                    <text x="396" y="260">0,</text>
+                    <text x="428" y="260">more</text>
+                    <text x="460" y="260">to</text>
+                    <text x="496" y="260">come)</text>
+                    <text x="96" y="276">|</text>
+                    <text x="96" y="292">X</text>
+                    <text x="212" y="292">2.31</text>
+                    <text x="268" y="292">Continue</text>
+                    <text x="340" y="292">(Block1:</text>
+                    <text x="384" y="292">0</text>
+                    <text x="432" y="292">received,</text>
+                    <text x="492" y="292">send</text>
+                    <text x="536" y="292">more)</text>
+                    <text x="96" y="308">|</text>
+                    <text x="96" y="324">@</text>
+                    <text x="212" y="324">POST</text>
+                    <text x="272" y="324">"valjean"</text>
+                    <text x="348" y="324">(Block1:</text>
+                    <text x="396" y="324">1,</text>
+                    <text x="428" y="324">last</text>
+                    <text x="476" y="324">block)</text>
+                    <text x="96" y="340">|</text>
+                    <text x="96" y="356">X</text>
+                    <text x="212" y="356">2.04</text>
+                    <text x="264" y="356">Valjean</text>
+                    <text x="332" y="356">Promoted</text>
+                    <text x="96" y="372">|</text>
+                  </g>
+                </svg><a href="#section-2.4.1-2.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-completing-an-operation-with" class="selfRef">Completing an operation with an earlier final block</a>
@@ -2099,35 +2174,140 @@ shall we do with her?" - "Lock her up.". The attack is illustrated in
 <a href="#freethequeen" class="auto internal xref">Figure 9</a>.<a href="#section-2.4.2-2" class="pilcrow">¶</a></p>
 <span id="name-injecting-a-withheld-first-b"></span><div id="freethequeen">
 <figure id="figure-9">
-            <div class="alignLeft art-text artwork" id="section-2.4.2-3.1">
-<pre>
-Client   Foe   Server
-   |      |      |
-   +-----&gt;@      |    POST "Girl stole apple. Wh"
-   |      |      |        (Block1: 0, more to come)
-
-(Client: We'll try that one later again; for now, we have something
-more urgent:)
-
-   |      |      |
-   +-------------&gt;    POST "Evil Queen poisened apple. Wh"
-   |      |      |        (Block1: 0, more to come)
-   |      |      |
-   |      @&lt;-----+    2.31 Continue (Block1: 0 received, send more)
-   |      |      |
-   |      @------&gt;    POST "Girl stole apple. Wh"
-   |      |      |        (Block1: 0, more to come)
-   |      |      |
-   |      X&lt;-----+    2.31 Continue (Block1: 0 received, send more)
-   |      |      |
-   &lt;------@      |    2.31 Continue (Block1: 0 received, send more)
-   |      |      |
-   +-------------&gt;    POST "at shall we do with her?"
-   |      |      |        (Block1: 1, last block)
-   |      |      |
-   &lt;-------------+    2.05 "Set her free."
-   |      |      |        (Block1: 1 received and this is the result)
-</pre>
+            <div id="section-2.4.2-3.1">
+              <div class="alignLeft art-svg artwork" id="section-2.4.2-3.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="448" width="576" viewBox="0 0 576 448" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+                  <path d="M 32,48 L 32,80" fill="none" stroke="black"></path>
+                  <path d="M 32,160 L 32,432" fill="none" stroke="black"></path>
+                  <path d="M 96,184 L 96,208" fill="none" stroke="black"></path>
+                  <path d="M 96,272 L 96,288" fill="none" stroke="black"></path>
+                  <path d="M 96,376 L 96,408" fill="none" stroke="black"></path>
+                  <path d="M 160,48 L 160,80" fill="none" stroke="black"></path>
+                  <path d="M 160,160 L 160,432" fill="none" stroke="black"></path>
+                  <path d="M 32,64 L 80,64" fill="none" stroke="black"></path>
+                  <path d="M 32,176 L 152,176" fill="none" stroke="black"></path>
+                  <path d="M 112,224 L 160,224" fill="none" stroke="black"></path>
+                  <path d="M 104,256 L 152,256" fill="none" stroke="black"></path>
+                  <path d="M 112,304 L 160,304" fill="none" stroke="black"></path>
+                  <path d="M 40,336 L 88,336" fill="none" stroke="black"></path>
+                  <path d="M 32,368 L 152,368" fill="none" stroke="black"></path>
+                  <path d="M 40,416 L 160,416" fill="none" stroke="black"></path>
+                  <polygon class="arrowhead" points="160,368 148,362.4 148,373.6" fill="black" transform="rotate(0,152,368)"></polygon>
+                  <polygon class="arrowhead" points="160,256 148,250.4 148,261.6" fill="black" transform="rotate(0,152,256)"></polygon>
+                  <polygon class="arrowhead" points="160,176 148,170.4 148,181.6" fill="black" transform="rotate(0,152,176)"></polygon>
+                  <polygon class="arrowhead" points="120,304 108,298.4 108,309.6" fill="black" transform="rotate(180,112,304)"></polygon>
+                  <polygon class="arrowhead" points="120,224 108,218.4 108,229.6" fill="black" transform="rotate(180,112,224)"></polygon>
+                  <polygon class="arrowhead" points="88,64 76,58.4 76,69.6" fill="black" transform="rotate(0,80,64)"></polygon>
+                  <polygon class="arrowhead" points="48,416 36,410.4 36,421.6" fill="black" transform="rotate(180,40,416)"></polygon>
+                  <polygon class="arrowhead" points="48,336 36,330.4 36,341.6" fill="black" transform="rotate(180,40,336)"></polygon>
+                  <g class="text">
+                    <text x="28" y="36">Client</text>
+                    <text x="96" y="36">Foe</text>
+                    <text x="164" y="36">Server</text>
+                    <text x="96" y="52">|</text>
+                    <text x="96" y="68">@</text>
+                    <text x="212" y="68">POST</text>
+                    <text x="256" y="68">"Girl</text>
+                    <text x="304" y="68">stole</text>
+                    <text x="356" y="68">apple.</text>
+                    <text x="400" y="68">Wh"</text>
+                    <text x="96" y="84">|</text>
+                    <text x="260" y="84">(Block1:</text>
+                    <text x="308" y="84">0,</text>
+                    <text x="340" y="84">more</text>
+                    <text x="372" y="84">to</text>
+                    <text x="408" y="84">come)</text>
+                    <text x="36" y="116">(Client:</text>
+                    <text x="96" y="116">We'll</text>
+                    <text x="136" y="116">try</text>
+                    <text x="172" y="116">that</text>
+                    <text x="208" y="116">one</text>
+                    <text x="248" y="116">later</text>
+                    <text x="300" y="116">again;</text>
+                    <text x="344" y="116">for</text>
+                    <text x="380" y="116">now,</text>
+                    <text x="412" y="116">we</text>
+                    <text x="444" y="116">have</text>
+                    <text x="504" y="116">something</text>
+                    <text x="20" y="132">more</text>
+                    <text x="76" y="132">urgent:)</text>
+                    <text x="96" y="164">|</text>
+                    <text x="212" y="180">POST</text>
+                    <text x="256" y="180">"Evil</text>
+                    <text x="304" y="180">Queen</text>
+                    <text x="364" y="180">poisened</text>
+                    <text x="428" y="180">apple.</text>
+                    <text x="472" y="180">Wh"</text>
+                    <text x="260" y="196">(Block1:</text>
+                    <text x="308" y="196">0,</text>
+                    <text x="340" y="196">more</text>
+                    <text x="372" y="196">to</text>
+                    <text x="408" y="196">come)</text>
+                    <text x="96" y="228">@</text>
+                    <text x="212" y="228">2.31</text>
+                    <text x="268" y="228">Continue</text>
+                    <text x="340" y="228">(Block1:</text>
+                    <text x="384" y="228">0</text>
+                    <text x="432" y="228">received,</text>
+                    <text x="492" y="228">send</text>
+                    <text x="536" y="228">more)</text>
+                    <text x="96" y="244">|</text>
+                    <text x="96" y="260">@</text>
+                    <text x="212" y="260">POST</text>
+                    <text x="256" y="260">"Girl</text>
+                    <text x="304" y="260">stole</text>
+                    <text x="356" y="260">apple.</text>
+                    <text x="400" y="260">Wh"</text>
+                    <text x="260" y="276">(Block1:</text>
+                    <text x="308" y="276">0,</text>
+                    <text x="340" y="276">more</text>
+                    <text x="372" y="276">to</text>
+                    <text x="408" y="276">come)</text>
+                    <text x="96" y="308">X</text>
+                    <text x="212" y="308">2.31</text>
+                    <text x="268" y="308">Continue</text>
+                    <text x="340" y="308">(Block1:</text>
+                    <text x="384" y="308">0</text>
+                    <text x="432" y="308">received,</text>
+                    <text x="492" y="308">send</text>
+                    <text x="536" y="308">more)</text>
+                    <text x="96" y="324">|</text>
+                    <text x="96" y="340">@</text>
+                    <text x="212" y="340">2.31</text>
+                    <text x="268" y="340">Continue</text>
+                    <text x="340" y="340">(Block1:</text>
+                    <text x="384" y="340">0</text>
+                    <text x="432" y="340">received,</text>
+                    <text x="492" y="340">send</text>
+                    <text x="536" y="340">more)</text>
+                    <text x="96" y="356">|</text>
+                    <text x="212" y="372">POST</text>
+                    <text x="248" y="372">"at</text>
+                    <text x="288" y="372">shall</text>
+                    <text x="324" y="372">we</text>
+                    <text x="348" y="372">do</text>
+                    <text x="380" y="372">with</text>
+                    <text x="424" y="372">her?"</text>
+                    <text x="260" y="388">(Block1:</text>
+                    <text x="308" y="388">1,</text>
+                    <text x="340" y="388">last</text>
+                    <text x="388" y="388">block)</text>
+                    <text x="212" y="420">2.05</text>
+                    <text x="252" y="420">"Set</text>
+                    <text x="288" y="420">her</text>
+                    <text x="332" y="420">free."</text>
+                    <text x="96" y="436">|</text>
+                    <text x="260" y="436">(Block1:</text>
+                    <text x="304" y="436">1</text>
+                    <text x="348" y="436">received</text>
+                    <text x="400" y="436">and</text>
+                    <text x="436" y="436">this</text>
+                    <text x="468" y="436">is</text>
+                    <text x="496" y="436">the</text>
+                    <text x="544" y="436">result)</text>
+                  </g>
+                </svg><a href="#section-2.4.2-3.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-injecting-a-withheld-first-b" class="selfRef">Injecting a withheld first block</a>
@@ -2205,20 +2385,53 @@ based on that false assumption. The attack is illustrated in
 challenge-response mechanism transferred as CoAP payloads.<a href="#section-2.5-1" class="pilcrow">¶</a></p>
 <span id="name-relay-attack-the-client-is-"></span><div id="relay">
 <figure id="figure-10">
-          <div class="alignCenter art-text artwork" id="section-2.5-2.1">
-<pre>
-Client   Foe         Foe   Server
-   |      |           |      |
-   +-----&gt;| ......... +-----&gt;|      Code: 0.02 (POST)
-   | POST |           | POST |     Token: 0x3a
-   |      |           |      |  Uri-Path: lock
-   |      |           |      |   Payload: JwePR2iCe8b0ux (Challenge)
-   |      |           |      |
-   |&lt;-----+ ......... |&lt;-----+      Code: 2.04 (Changed)
-   | 2.04 |           | 2.04 |     Token: 0x3a
-   |      |           |      |   Payload: RM8i13G8D5vfXK (Response)
-   |      |           |      |
-</pre>
+          <div id="section-2.5-2.1">
+            <div class="alignCenter art-svg artwork" id="section-2.5-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="208" width="552" viewBox="0 0 552 208" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+                <path d="M 32,48 L 32,192" fill="none" stroke="black"></path>
+                <path d="M 88,48 L 88,192" fill="none" stroke="black"></path>
+                <path d="M 184,48 L 184,192" fill="none" stroke="black"></path>
+                <path d="M 240,48 L 240,192" fill="none" stroke="black"></path>
+                <path d="M 32,64 L 80,64" fill="none" stroke="black"></path>
+                <path d="M 184,64 L 232,64" fill="none" stroke="black"></path>
+                <path d="M 40,144 L 88,144" fill="none" stroke="black"></path>
+                <path d="M 192,144 L 240,144" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="240,64 228,58.4 228,69.6" fill="black" transform="rotate(0,232,64)"></polygon>
+                <polygon class="arrowhead" points="200,144 188,138.4 188,149.6" fill="black" transform="rotate(180,192,144)"></polygon>
+                <polygon class="arrowhead" points="88,64 76,58.4 76,69.6" fill="black" transform="rotate(0,80,64)"></polygon>
+                <polygon class="arrowhead" points="48,144 36,138.4 36,149.6" fill="black" transform="rotate(180,40,144)"></polygon>
+                <g class="text">
+                  <text x="28" y="36">Client</text>
+                  <text x="88" y="36">Foe</text>
+                  <text x="184" y="36">Foe</text>
+                  <text x="244" y="36">Server</text>
+                  <text x="136" y="68">.........</text>
+                  <text x="312" y="68">Code:</text>
+                  <text x="356" y="68">0.02</text>
+                  <text x="404" y="68">(POST)</text>
+                  <text x="60" y="84">POST</text>
+                  <text x="212" y="84">POST</text>
+                  <text x="308" y="84">Token:</text>
+                  <text x="356" y="84">0x3a</text>
+                  <text x="296" y="100">Uri-Path:</text>
+                  <text x="356" y="100">lock</text>
+                  <text x="300" y="116">Payload:</text>
+                  <text x="396" y="116">JwePR2iCe8b0ux</text>
+                  <text x="504" y="116">(Challenge)</text>
+                  <text x="136" y="148">.........</text>
+                  <text x="312" y="148">Code:</text>
+                  <text x="356" y="148">2.04</text>
+                  <text x="416" y="148">(Changed)</text>
+                  <text x="60" y="164">2.04</text>
+                  <text x="212" y="164">2.04</text>
+                  <text x="308" y="164">Token:</text>
+                  <text x="356" y="164">0x3a</text>
+                  <text x="300" y="180">Payload:</text>
+                  <text x="396" y="180">RM8i13G8D5vfXK</text>
+                  <text x="500" y="180">(Response)</text>
+                </g>
+              </svg><a href="#section-2.5-2.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-relay-attack-the-client-is-" class="selfRef">Relay attack (the client is the actuator)</a>
