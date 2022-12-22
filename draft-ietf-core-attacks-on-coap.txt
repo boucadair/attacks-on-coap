@@ -5,11 +5,11 @@
 Network Working Group                                  J. Preuß Mattsson
 Internet-Draft                                               J. Fornehed
 Intended status: Informational                               G. Selander
-Expires: 14 May 2023                                        F. Palombini
+Expires: 25 June 2023                                       F. Palombini
                                                                 Ericsson
                                                                C. Amsüss
                                              Energy Harvesting Solutions
-                                                        10 November 2022
+                                                        22 December 2022
 
 
          Attacks on the Constrained Application Protocol (CoAP)
@@ -59,7 +59,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 May 2023.
+   This Internet-Draft will expire on 25 June 2023.
 
 Copyright Notice
 
@@ -106,7 +106,7 @@ Table of Contents
    protocol and the presence of intermediaries.  The use of CoAP over
    UDP and DTLS is specified in [RFC7252] and the use of CoAP over TCP
    and TLS is specified in [RFC8323].  OSCORE protects CoAP end-to-end
-   with the use of COSE [RFC8152] and the CoAP Object-Security option
+   with the use of COSE [RFC9052] and the CoAP Object-Security option
    [RFC8613], and can therefore be used over any transport.  Using a
    security protocol to protect CoAP is a requirement for secure
    operation and protects against many attacks.  The CoAP NoSec mode
@@ -790,9 +790,9 @@ Table of Contents
    [I-D.ietf-lake-edhoc]
               Selander, G., Mattsson, J. P., and F. Palombini,
               "Ephemeral Diffie-Hellman Over COSE (EDHOC)", Work in
-              Progress, Internet-Draft, draft-ietf-lake-edhoc-17, 12
-              October 2022, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-lake-edhoc-17>.
+              Progress, Internet-Draft, draft-ietf-lake-edhoc-18, 28
+              November 2022, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-lake-edhoc-18>.
 
    [RFC7252]  Shelby, Z., Hartke, K., and C. Bormann, "The Constrained
               Application Protocol (CoAP)", RFC 7252,
@@ -803,10 +803,6 @@ Table of Contents
               the Constrained Application Protocol (CoAP)", RFC 7959,
               DOI 10.17487/RFC7959, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7959>.
-
-   [RFC8152]  Schaad, J., "CBOR Object Signing and Encryption (COSE)",
-              RFC 8152, DOI 10.17487/RFC8152, July 2017,
-              <https://www.rfc-editor.org/rfc/rfc8152>.
 
    [RFC8323]  Bormann, C., Lemay, S., Tschofenig, H., Hartke, K.,
               Silverajan, B., and B. Raymor, Ed., "CoAP (Constrained
@@ -822,6 +818,11 @@ Table of Contents
               "Object Security for Constrained RESTful Environments
               (OSCORE)", RFC 8613, DOI 10.17487/RFC8613, July 2019,
               <https://www.rfc-editor.org/rfc/rfc8613>.
+
+   [RFC9052]  Schaad, J., "CBOR Object Signing and Encryption (COSE):
+              Structures and Process", STD 96, RFC 9052,
+              DOI 10.17487/RFC9052, August 2022,
+              <https://www.rfc-editor.org/rfc/rfc9052>.
 
    [RFC9147]  Rescorla, E., Tschofenig, H., and N. Modadugu, "The
               Datagram Transport Layer Security (DTLS) Protocol Version
