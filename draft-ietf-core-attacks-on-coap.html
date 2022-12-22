@@ -1726,29 +1726,73 @@ but lowers the probability.<a href="#section-2.3-3" class="pilcrow">¶</a></p>
 <p id="section-2.3-4">The response delay and mismatch attack is illustrated in <a href="#delayresPUT" class="auto internal xref">Figure 5</a>.<a href="#section-2.3-4" class="pilcrow">¶</a></p>
 <span id="name-delaying-and-mismatching-re"></span><div id="delayresPUT">
 <figure id="figure-5">
-          <div class="alignCenter art-text artwork" id="section-2.3-5.1">
-<pre>
-Client   Foe   Server
-   |      |      |
-   +------------&gt;|      Code: 0.03 (PUT)
-   | PUT  |      |     Token: 0x77
-   |      |      |  Uri-Path: lock
-   |      |      |   Payload: 0 (Unlock)
-   |      |      |
-   |      @&lt;-----+      Code: 2.04 (Changed)
-   |      | 2.04 |     Token: 0x77
-   |      |      |
-     ....   ....
-   |      |      |
-   +-----&gt;X      |      Code: 0.03 (PUT)
-   | PUT  |      |     Token: 0x77
-   |      |      |  Uri-Path: lock
-   |      |      |   Payload: 0 (Lock)
-   |      |      |
-   &lt;------@      |      Code: 2.04 (Changed)
-   | 2.04 |      |     Token: 0x77
-   |      |      |
-</pre>
+          <div id="section-2.3-5.1">
+            <div class="alignCenter art-svg artwork" id="section-2.3-5.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="352" width="376" viewBox="0 0 376 352" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+                <path d="M 32,48 L 32,176" fill="none" stroke="black"></path>
+                <path d="M 32,208 L 32,336" fill="none" stroke="black"></path>
+                <path d="M 96,72 L 96,128" fill="none" stroke="black"></path>
+                <path d="M 96,160 L 96,176" fill="none" stroke="black"></path>
+                <path d="M 96,240 L 96,288" fill="none" stroke="black"></path>
+                <path d="M 96,320 L 96,336" fill="none" stroke="black"></path>
+                <path d="M 160,48 L 160,176" fill="none" stroke="black"></path>
+                <path d="M 160,208 L 160,336" fill="none" stroke="black"></path>
+                <path d="M 32,64 L 152,64" fill="none" stroke="black"></path>
+                <path d="M 112,144 L 160,144" fill="none" stroke="black"></path>
+                <path d="M 32,224 L 80,224" fill="none" stroke="black"></path>
+                <path d="M 40,304 L 88,304" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="160,64 148,58.4 148,69.6" fill="black" transform="rotate(0,152,64)"></polygon>
+                <polygon class="arrowhead" points="120,144 108,138.4 108,149.6" fill="black" transform="rotate(180,112,144)"></polygon>
+                <polygon class="arrowhead" points="88,224 76,218.4 76,229.6" fill="black" transform="rotate(0,80,224)"></polygon>
+                <polygon class="arrowhead" points="48,304 36,298.4 36,309.6" fill="black" transform="rotate(180,40,304)"></polygon>
+                <g class="text">
+                  <text x="28" y="36">Client</text>
+                  <text x="96" y="36">Foe</text>
+                  <text x="164" y="36">Server</text>
+                  <text x="96" y="52">|</text>
+                  <text x="232" y="68">Code:</text>
+                  <text x="276" y="68">0.03</text>
+                  <text x="320" y="68">(PUT)</text>
+                  <text x="56" y="84">PUT</text>
+                  <text x="228" y="84">Token:</text>
+                  <text x="276" y="84">0x77</text>
+                  <text x="216" y="100">Uri-Path:</text>
+                  <text x="276" y="100">lock</text>
+                  <text x="220" y="116">Payload:</text>
+                  <text x="264" y="116">0</text>
+                  <text x="308" y="116">(Unlock)</text>
+                  <text x="96" y="148">@</text>
+                  <text x="232" y="148">Code:</text>
+                  <text x="276" y="148">2.04</text>
+                  <text x="336" y="148">(Changed)</text>
+                  <text x="132" y="164">2.04</text>
+                  <text x="228" y="164">Token:</text>
+                  <text x="276" y="164">0x77</text>
+                  <text x="64" y="196">...</text>
+                  <text x="128" y="196">...</text>
+                  <text x="96" y="212">|</text>
+                  <text x="96" y="228">X</text>
+                  <text x="232" y="228">Code:</text>
+                  <text x="276" y="228">0.03</text>
+                  <text x="320" y="228">(PUT)</text>
+                  <text x="56" y="244">PUT</text>
+                  <text x="228" y="244">Token:</text>
+                  <text x="276" y="244">0x77</text>
+                  <text x="216" y="260">Uri-Path:</text>
+                  <text x="276" y="260">lock</text>
+                  <text x="220" y="276">Payload:</text>
+                  <text x="264" y="276">0</text>
+                  <text x="300" y="276">(Lock)</text>
+                  <text x="96" y="308">@</text>
+                  <text x="232" y="308">Code:</text>
+                  <text x="276" y="308">2.04</text>
+                  <text x="336" y="308">(Changed)</text>
+                  <text x="60" y="324">2.04</text>
+                  <text x="228" y="324">Token:</text>
+                  <text x="276" y="324">0x77</text>
+                </g>
+              </svg><a href="#section-2.3-5.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-delaying-and-mismatching-re" class="selfRef">Delaying and mismatching response to PUT</a>
@@ -1765,35 +1809,92 @@ that the lock is locked, when it in fact is not. The "Unlock" request
 may be also be sent by another client authorized to control the lock.<a href="#section-2.3-7" class="pilcrow">¶</a></p>
 <span id="name-delaying-and-mismatching-res"></span><div id="delayresGET">
 <figure id="figure-6">
-          <div class="alignCenter art-text artwork" id="section-2.3-8.1">
-<pre>
-Client   Foe   Server
-   |      |      |
-   +------------&gt;|      Code: 0.01 (GET)
-   | GET  |      |     Token: 0x77
-   |      |      |  Uri-Path: lock
-   |      |      |
-   |      @&lt;-----+      Code: 2.05 (Content)
-   |      | 2.05 |     Token: 0x77
-   |      |      |   Payload: 1 (Locked)
-   |      |      |
-   +------------&gt;|      Code: 0.03 (PUT)
-   | PUT  |      |     Token: 0x34
-   |      |      |  Uri-Path: lock
-   |      |      |   Payload: 1 (Unlock)
-   |      |      |
-   |      X&lt;-----+      Code: 2.04 (Changed)
-   |      | 2.04 |     Token: 0x34
-   |      |      |
-   +-----&gt;X      |      Code: 0.01 (GET)
-   | GET  |      |     Token: 0x77
-   |      |      |  Uri-Path: lock
-   |      |      |
-   &lt;------@      |      Code: 2.05 (Content)
-   | 2.05 |      |     Token: 0x77
-   |      |      |   Payload: 1 (Locked)
-   |      |      |
-</pre>
+          <div id="section-2.3-8.1">
+            <div class="alignCenter art-svg artwork" id="section-2.3-8.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="448" width="376" viewBox="0 0 376 448" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+                <path d="M 32,48 L 32,432" fill="none" stroke="black"></path>
+                <path d="M 96,72 L 96,112" fill="none" stroke="black"></path>
+                <path d="M 96,144 L 96,184" fill="none" stroke="black"></path>
+                <path d="M 96,200 L 96,256" fill="none" stroke="black"></path>
+                <path d="M 96,288 L 96,304" fill="none" stroke="black"></path>
+                <path d="M 96,336 L 96,368" fill="none" stroke="black"></path>
+                <path d="M 96,400 L 96,432" fill="none" stroke="black"></path>
+                <path d="M 160,48 L 160,432" fill="none" stroke="black"></path>
+                <path d="M 32,64 L 152,64" fill="none" stroke="black"></path>
+                <path d="M 112,128 L 160,128" fill="none" stroke="black"></path>
+                <path d="M 32,192 L 152,192" fill="none" stroke="black"></path>
+                <path d="M 112,272 L 160,272" fill="none" stroke="black"></path>
+                <path d="M 32,320 L 80,320" fill="none" stroke="black"></path>
+                <path d="M 40,384 L 88,384" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="160,192 148,186.4 148,197.6" fill="black" transform="rotate(0,152,192)"></polygon>
+                <polygon class="arrowhead" points="160,64 148,58.4 148,69.6" fill="black" transform="rotate(0,152,64)"></polygon>
+                <polygon class="arrowhead" points="120,272 108,266.4 108,277.6" fill="black" transform="rotate(180,112,272)"></polygon>
+                <polygon class="arrowhead" points="120,128 108,122.4 108,133.6" fill="black" transform="rotate(180,112,128)"></polygon>
+                <polygon class="arrowhead" points="88,320 76,314.4 76,325.6" fill="black" transform="rotate(0,80,320)"></polygon>
+                <polygon class="arrowhead" points="48,384 36,378.4 36,389.6" fill="black" transform="rotate(180,40,384)"></polygon>
+                <g class="text">
+                  <text x="28" y="36">Client</text>
+                  <text x="96" y="36">Foe</text>
+                  <text x="164" y="36">Server</text>
+                  <text x="96" y="52">|</text>
+                  <text x="232" y="68">Code:</text>
+                  <text x="276" y="68">0.01</text>
+                  <text x="320" y="68">(GET)</text>
+                  <text x="56" y="84">GET</text>
+                  <text x="228" y="84">Token:</text>
+                  <text x="276" y="84">0x77</text>
+                  <text x="216" y="100">Uri-Path:</text>
+                  <text x="276" y="100">lock</text>
+                  <text x="96" y="132">@</text>
+                  <text x="232" y="132">Code:</text>
+                  <text x="276" y="132">2.05</text>
+                  <text x="336" y="132">(Content)</text>
+                  <text x="132" y="148">2.05</text>
+                  <text x="228" y="148">Token:</text>
+                  <text x="276" y="148">0x77</text>
+                  <text x="220" y="164">Payload:</text>
+                  <text x="264" y="164">1</text>
+                  <text x="308" y="164">(Locked)</text>
+                  <text x="232" y="196">Code:</text>
+                  <text x="276" y="196">0.03</text>
+                  <text x="320" y="196">(PUT)</text>
+                  <text x="56" y="212">PUT</text>
+                  <text x="228" y="212">Token:</text>
+                  <text x="276" y="212">0x34</text>
+                  <text x="216" y="228">Uri-Path:</text>
+                  <text x="276" y="228">lock</text>
+                  <text x="220" y="244">Payload:</text>
+                  <text x="264" y="244">1</text>
+                  <text x="308" y="244">(Unlock)</text>
+                  <text x="96" y="276">X</text>
+                  <text x="232" y="276">Code:</text>
+                  <text x="276" y="276">2.04</text>
+                  <text x="336" y="276">(Changed)</text>
+                  <text x="132" y="292">2.04</text>
+                  <text x="228" y="292">Token:</text>
+                  <text x="276" y="292">0x34</text>
+                  <text x="96" y="324">X</text>
+                  <text x="232" y="324">Code:</text>
+                  <text x="276" y="324">0.01</text>
+                  <text x="320" y="324">(GET)</text>
+                  <text x="56" y="340">GET</text>
+                  <text x="228" y="340">Token:</text>
+                  <text x="276" y="340">0x77</text>
+                  <text x="216" y="356">Uri-Path:</text>
+                  <text x="276" y="356">lock</text>
+                  <text x="96" y="388">@</text>
+                  <text x="232" y="388">Code:</text>
+                  <text x="276" y="388">2.05</text>
+                  <text x="336" y="388">(Content)</text>
+                  <text x="60" y="404">2.05</text>
+                  <text x="228" y="404">Token:</text>
+                  <text x="276" y="404">0x77</text>
+                  <text x="220" y="420">Payload:</text>
+                  <text x="264" y="420">1</text>
+                  <text x="308" y="420">(Locked)</text>
+                </g>
+              </svg><a href="#section-2.3-8.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-delaying-and-mismatching-res" class="selfRef">Delaying and mismatching response to GET</a>
@@ -1809,29 +1910,71 @@ client that the living room is on fire by responding with an earlier
 delayed response from the oven (temperatures in degree Celsius).<a href="#section-2.3-9" class="pilcrow">¶</a></p>
 <span id="name-delaying-and-mismatching-resp"></span><div id="delayresother">
 <figure id="figure-7">
-          <div class="alignCenter art-text artwork" id="section-2.3-10.1">
-<pre>
-Client   Foe   Server
-   |      |      |
-   +------------&gt;|      Code: 0.01 (GET)
-   | GET  |      |     Token: 0x77
-   |      |      |  Uri-Path: oven/temperature
-   |      |      |
-   |      @&lt;-----+      Code: 2.05 (Content)
-   |      | 2.05 |     Token: 0x77
-   |      |      |   Payload: 225
-   |      |      |
-     ....   ....
-   |      |      |
-   +-----&gt;X      |      Code: 0.01 (GET)
-   | GET  |      |     Token: 0x77
-   |      |      |  Uri-Path: livingroom/temperature
-   |      |      |
-   &lt;------@      |      Code: 2.05 (Content)
-   | 2.05 |      |     Token: 0x77
-   |      |      |   Payload: 225
-   |      |      |
-</pre>
+          <div id="section-2.3-10.1">
+            <div class="alignCenter art-svg artwork" id="section-2.3-10.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="352" width="440" viewBox="0 0 440 352" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+                <path d="M 32,48 L 32,176" fill="none" stroke="black"></path>
+                <path d="M 32,208 L 32,336" fill="none" stroke="black"></path>
+                <path d="M 96,72 L 96,112" fill="none" stroke="black"></path>
+                <path d="M 96,144 L 96,176" fill="none" stroke="black"></path>
+                <path d="M 96,240 L 96,272" fill="none" stroke="black"></path>
+                <path d="M 96,304 L 96,336" fill="none" stroke="black"></path>
+                <path d="M 160,48 L 160,176" fill="none" stroke="black"></path>
+                <path d="M 160,208 L 160,336" fill="none" stroke="black"></path>
+                <path d="M 32,64 L 152,64" fill="none" stroke="black"></path>
+                <path d="M 112,128 L 160,128" fill="none" stroke="black"></path>
+                <path d="M 32,224 L 80,224" fill="none" stroke="black"></path>
+                <path d="M 40,288 L 88,288" fill="none" stroke="black"></path>
+                <polygon class="arrowhead" points="160,64 148,58.4 148,69.6" fill="black" transform="rotate(0,152,64)"></polygon>
+                <polygon class="arrowhead" points="120,128 108,122.4 108,133.6" fill="black" transform="rotate(180,112,128)"></polygon>
+                <polygon class="arrowhead" points="88,224 76,218.4 76,229.6" fill="black" transform="rotate(0,80,224)"></polygon>
+                <polygon class="arrowhead" points="48,288 36,282.4 36,293.6" fill="black" transform="rotate(180,40,288)"></polygon>
+                <g class="text">
+                  <text x="28" y="36">Client</text>
+                  <text x="96" y="36">Foe</text>
+                  <text x="164" y="36">Server</text>
+                  <text x="96" y="52">|</text>
+                  <text x="232" y="68">Code:</text>
+                  <text x="276" y="68">0.01</text>
+                  <text x="320" y="68">(GET)</text>
+                  <text x="56" y="84">GET</text>
+                  <text x="228" y="84">Token:</text>
+                  <text x="276" y="84">0x77</text>
+                  <text x="216" y="100">Uri-Path:</text>
+                  <text x="324" y="100">oven/temperature</text>
+                  <text x="96" y="132">@</text>
+                  <text x="232" y="132">Code:</text>
+                  <text x="276" y="132">2.05</text>
+                  <text x="336" y="132">(Content)</text>
+                  <text x="132" y="148">2.05</text>
+                  <text x="228" y="148">Token:</text>
+                  <text x="276" y="148">0x77</text>
+                  <text x="220" y="164">Payload:</text>
+                  <text x="272" y="164">225</text>
+                  <text x="64" y="196">...</text>
+                  <text x="128" y="196">...</text>
+                  <text x="96" y="212">|</text>
+                  <text x="96" y="228">X</text>
+                  <text x="232" y="228">Code:</text>
+                  <text x="276" y="228">0.01</text>
+                  <text x="320" y="228">(GET)</text>
+                  <text x="56" y="244">GET</text>
+                  <text x="228" y="244">Token:</text>
+                  <text x="276" y="244">0x77</text>
+                  <text x="216" y="260">Uri-Path:</text>
+                  <text x="348" y="260">livingroom/temperature</text>
+                  <text x="96" y="292">@</text>
+                  <text x="232" y="292">Code:</text>
+                  <text x="276" y="292">2.05</text>
+                  <text x="336" y="292">(Content)</text>
+                  <text x="60" y="308">2.05</text>
+                  <text x="228" y="308">Token:</text>
+                  <text x="276" y="308">0x77</text>
+                  <text x="220" y="324">Payload:</text>
+                  <text x="272" y="324">225</text>
+                </g>
+              </svg><a href="#section-2.3-10.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-delaying-and-mismatching-resp" class="selfRef">Delaying and mismatching response from other resource</a>
