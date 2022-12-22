@@ -575,7 +575,7 @@ Table of Contents
    by the time the client acts on it, the server has already executed
    the unauthorized action.
 
-   Client   Foe   Server
+   Client    Foe    Server
       |       |       |
       +-------------->|    POST "incarcerate" (Block1: 0, more to come)
       |       |       |
@@ -744,19 +744,19 @@ Table of Contents
    Figure 10.  In this example the car is using an application specific
    challenge-response mechanism transferred as CoAP payloads.
 
-   Client   Foe         Foe   Server
-      |      |           |      |
-      +----->| ......... +----->|      Code: 0.02 (POST)
-      | POST |           | POST |     Token: 0x3a
-      |      |           |      |  Uri-Path: lock
-      |      |           |      |   Payload: JwePR2iCe8b0ux (Challenge)
-      |      |           |      |
-      |<-----+ ......... |<-----+      Code: 2.04 (Changed)
-      | 2.04 |           | 2.04 |     Token: 0x3a
-      |      |           |      |   Payload: RM8i13G8D5vfXK (Response)
-      |      |           |      |
+  Client    Foe         Foe    Server
+     |       |           |       |
+     +------>| ......... +------>|      Code: 0.02 (POST)
+     | POST  |           |  POST |     Token: 0x3a
+     |       |           |       |  Uri-Path: lock
+     |       |           |       |   Payload: JwePR2iCe8b0ux (Challenge)
+     |       |           |       |
+     |<------+ ......... |<------+      Code: 2.04 (Changed)
+     | 2.04  |           |  2.04 |     Token: 0x3a
+     |       |           |       |   Payload: RM8i13G8D5vfXK (Response)
+     |       |           |       |
 
-            Figure 10: Relay attack (the client is the actuator)
+           Figure 10: Relay attack (the client is the actuator)
 
    The consequences may be severe, and in the case of a car, lead to the
    attacker unlocking and driving away with the car, an attack that
