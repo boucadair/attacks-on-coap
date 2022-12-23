@@ -641,34 +641,34 @@ Table of Contents
    shall we do with her?" - "Lock her up.".  The attack is illustrated
    in Figure 9.
 
- Client    Foe    Server
-    |       |       |
-    +-----> @       |    POST "Girl stole apple. Wh"
-    |       |       |        (Block1: 0, more to come)
+   Client    Foe    Server
+      |       |       |
+      +-----> @       |    POST "Girl stole apple. Wh"
+      |       |       |        (Block1: 0, more to come)
 
- (Client: We'll try that one later again; for now, we have something
- more urgent:)
+   (Client: We'll try that one later again; for now, we have something
+   more urgent:)
 
-    |       |       |
-    +-------------->|    POST "Evil Queen poisened apple. Wh"
-    |       |       |        (Block1: 0, more to come)
-    |       |       |
-    |       @ <-----+    2.31 Continue (Block1: 0 received, send more)
-    |       |       |
-    |       @------>|    POST "Girl stole apple. Wh"
-    |       |       |        (Block1: 0, more to come)
-    |       |       |
-    |       X <-----+    2.31 Continue (Block1: 0 received, send more)
-    |       |       |
-    |<------@       |    2.31 Continue (Block1: 0 received, send more)
-    |       |       |
-    +-------------->|    POST "at shall we do with her?"
-    |       |       |        (Block1: 1, last block)
-    |       |       |
-    |<--------------+    2.05 "Set her free."
-    |       |       |        (Block1: 1 received and this is the result)
+      |       |       |
+      +-------------->|    POST "Evil Queen poisened apple. Wh"
+      |       |       |        (Block1: 0, more to come)
+      |       |       |
+      |       @ <-----+    2.31 Continue (Block1: 0 received, send more)
+      |       |       |
+      |       @------>|    POST "Girl stole apple. Wh"
+      |       |       |        (Block1: 0, more to come)
+      |       |       |
+      |       X <-----+    2.31 Continue (Block1: 0 received, send more)
+      |       |       |
+      |<------@       |    2.31 Continue (Block1: 0 received, send more)
+      |       |       |
+      +-------------->|    POST "at shall we do with her?"
+      |       |       |        (Block1: 1, last block)
+      |       |       |
+      |<--------------+    2.05 "Set her free."
+      |       |       |        (Block1: 1 received, this is the result)
 
-               Figure 9: Injecting a withheld first block
+                 Figure 9: Injecting a withheld first block
 
    The remedy described in Section 2.4.1 works also for this case.  Note
    that merely requiring that blocks of an operation should have
@@ -744,19 +744,19 @@ Table of Contents
    Figure 10.  In this example the car is using an application specific
    challenge-response mechanism transferred as CoAP payloads.
 
-  Client    Foe         Foe    Server
-     |       |           |       |
-     +------>| ......... +------>|      Code: 0.02 (POST)
-     | POST  |           | POST  |     Token: 0x3a
-     |       |           |       |  Uri-Path: lock
-     |       |           |       |   Payload: JwePR2iCe8b0ux (Challenge)
-     |       |           |       |
-     |<------+ ......... |<------+      Code: 2.04 (Changed)
-     |  2.04 |           |  2.04 |     Token: 0x3a
-     |       |           |       |   Payload: RM8i13G8D5vfXK (Response)
-     |       |           |       |
+   Client    Foe        Foe    Server
+      |       |          |       |
+      +------>| ........ +------>|      Code: 0.02 (POST)
+      | POST  |          | POST  |     Token: 0x3a
+      |       |          |       |  Uri-Path: lock
+      |       |          |       |   Payload: JwePR2iCe8b0ux (Challenge)
+      |       |          |       |
+      |<------+ ........ |<------+      Code: 2.04 (Changed)
+      |  2.04 |          |  2.04 |     Token: 0x3a
+      |       |          |       |   Payload: RM8i13G8D5vfXK (Response)
+      |       |          |       |
 
-           Figure 10: Relay attack (the client is the actuator)
+            Figure 10: Relay attack (the client is the actuator)
 
    The consequences may be severe, and in the case of a car, lead to the
    attacker unlocking and driving away with the car, an attack that
