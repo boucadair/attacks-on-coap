@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-12-22T01:11:12.987755+00:00",
+  "timestamp": "2022-12-25T01:13:39.292309+00:00",
   "repo": "core-wg/attacks-on-coap",
   "labels": [
     {
@@ -60,7 +60,7 @@
       "id": "I_kwDOHUICes5JdiZn",
       "title": "Comments received during WG adoption call - freshness and recentness",
       "url": "https://github.com/core-wg/attacks-on-coap/issues/1",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "MEMBER",
       "assignees": [
@@ -71,8 +71,8 @@
       ],
       "body": "**Henk Birkholz**\r\nhttps://mailarchive.ietf.org/arch/msg/core/ULPpd1BBiouRlS9qJKHmVbcbslo/\r\n\r\nI think you are confusing freshness and recentness, fundamentally.\r\n\r\nFreshness is not connected to recentness, but they are similar - and\r\nthat is the tricky part. Something can be fresh after a huge amount of\r\ntime according to a time-scale (not recent). Something can be stale\r\nafter a tiny amount of time according to a time-scale (recent).\r\nFreshness is a quality of an assertion that expresses that the assertion\r\nstill reflects the state of its subject, at the time of checking it.\r\nFreshness can be very tricky to check. Is that what you want? Probably\r\nnot. My assumption is what you would want is a response with appropriate\r\nrecentness (at least that is how I read your text).",
       "createdAt": "2022-05-11T11:32:12Z",
-      "updatedAt": "2022-11-09T20:49:21Z",
-      "closedAt": null,
+      "updatedAt": "2022-12-23T05:48:29Z",
+      "closedAt": "2022-12-23T05:48:29Z",
       "comments": [
         {
           "author": "emanjon",
@@ -99,12 +99,13 @@
       "author": "emanjon",
       "authorAssociation": "MEMBER",
       "assignees": [
-        "chrysn"
+        "chrysn",
+        "gselander"
       ],
       "labels": [],
       "body": "**Mohamed Boucadair**\r\nhttps://mailarchive.ietf.org/arch/msg/core/4czSZYmRgMVgRA2d8mVpGUBwD0w/\r\n\r\nIt would helpful to explicit in Section 2.1 that this is about 7959, not the new block (to-be-RFC9177). Assessing the case of the new-block would be useful as well. ",
       "createdAt": "2022-05-11T11:35:59Z",
-      "updatedAt": "2022-11-09T18:00:18Z",
+      "updatedAt": "2022-12-23T06:03:11Z",
       "closedAt": null,
       "comments": [
         {
@@ -132,12 +133,13 @@
       "author": "emanjon",
       "authorAssociation": "MEMBER",
       "assignees": [
-        "chrysn"
+        "chrysn",
+        "gselander"
       ],
       "labels": [],
       "body": "**Jon Swallow**\r\nhttps://mailarchive.ietf.org/arch/msg/core/GNnRO4-iE_jRb5X2HfRtV3c8Sew/\r\n\r\nMed is actually referring to 2.4, but this made me realize there was a trap of seeing Block and hence thinking RFC7959 for 2.1 - \"The Block Attack\" which actually has no reference to CoAP blocks.  A better section title could be \"The Blocking Attack\" and s/Block Attack/Blocking Attack/ elsewhere.\r\n\r\nFor 2.4, \"Fragment\" in terms of CoAP blocks is not defined, and is not used in RFC7959 (RFC7959 refers to fragmentation issues outside of the CoAP layer), so is unclear that \"fragment\" is meant to be referring to a CoAP RFC7959 (or draft-ietf-core-new-block to-be-RFC9177) block.  \r\n\r\nThus, \"2.4. The Request CoAP Block Rearrangement Attack\" is a step in the right direction for me.  Then most of the usage of the word fragment needs to be replaced with block.\r\n\r\nAs a note for mitigating 2.4.1, to-be-RFC9177 requires the use of Request-Tag (https://datatracker.ietf.org/doc/html/draft-ietf-core-new-block#section-4.3) and good use of tokens (https://datatracker.ietf.org/doc/html/draft-ietf-core-new-block#section-6). \r\n\r\nThe lost blocks recovery mechanisms in to-be-RFC9177 mitigate the risk of the wrong block being processed in a request by the server.\r\n\r\nAgain using Block-Wise transfers, there has not been consideration for a delay attack causing the server to send back the wrong data in a BLOCK2 response.  See https://github.com/core-wg/echo-request-tag/issues/77 .  If the attacker delays the first request (which triggers a BLOCK2 response), and then sends it just before/after the second request (also triggering a BLOCK2 response), the request for the next block for, say the second request, from the client may get back the block from either the first or second request.  This can only be mitigated using the Request-Tag on each request, even though BLOCK1 is not being used for the request.  I think this attack also needs to be included.\r\n",
       "createdAt": "2022-05-11T11:38:35Z",
-      "updatedAt": "2022-11-09T18:31:48Z",
+      "updatedAt": "2022-12-23T06:03:11Z",
       "closedAt": null,
       "comments": [
         {
@@ -171,11 +173,13 @@
       "state": "OPEN",
       "author": "emanjon",
       "authorAssociation": "MEMBER",
-      "assignees": [],
+      "assignees": [
+        "emanjon"
+      ],
       "labels": [],
       "body": "**Achim Kraus**\r\nhttps://mailarchive.ietf.org/arch/msg/core/_KAqFsWT0-U7AhBTobU-Ar-DZr4/\r\n\r\nI'm not sure, what the purpose of this work would/should be.\r\n\r\nReading\r\n\r\n\"2.  Attacks on CoAP\r\n\r\n2.1.  The Block Attack\r\n\r\n    An on-path attacker can block the delivery of any number of requests\r\n    or responses.  The attack can also be performed by an attacker\r\n    jamming the lower layer radio protocol.\"\r\n\r\nis true for much more protocols, not only CoAP or DTLS. You can even cut\r\nwires. To narrow such a general issues to a statement about a single\r\nprotocol may be a little smelly.\r\n\r\n\"In this document we show that protecting CoAP with a security\r\n    protocol on another layer is not nearly enough to securely control\r\n    actuators (and in many cases sensors) and that secure operation often\r\n    demands far more than the four properties traditionally provided by\r\n    security protocols.\"\r\n\r\nThe document addresses weakness, but it's hard to see, that this\r\nweakness is qualified. Many of the attacks seems to be somehow \"easy for\r\nan on-path-attacker on unecrypted messages\". And, yes could not be\r\nexcluded also for encrypted messages. In my opinion, encryption makes\r\nsuch attacks much harder to apply, less attractive. And so \"not nearly\r\nenough\" seems to be too strong.\r\n\r\nMy impression is, this document puts doubts on using DTLS 1.2.\r\nIt puts threats of unencrypted messages too close to the same (but much\r\nlower) threats using encryption. I would appreciate, if the document is\r\nclearer about that. Not that it turns into a disservice.\r\n",
       "createdAt": "2022-05-11T11:43:48Z",
-      "updatedAt": "2022-05-11T11:43:48Z",
+      "updatedAt": "2022-12-23T06:38:28Z",
       "closedAt": null,
       "comments": []
     },
@@ -187,11 +191,31 @@
       "state": "OPEN",
       "author": "emanjon",
       "authorAssociation": "MEMBER",
-      "assignees": [],
+      "assignees": [
+        "emanjon"
+      ],
       "labels": [],
       "body": "Availability is a required property for secure operation which is a bit different from the other properties of confiedentiality, intergrity, and replay.\r\n\r\nAdded availability to the introduction, should be discussed in the body as well where appropriate.",
       "createdAt": "2022-11-10T10:34:38Z",
-      "updatedAt": "2022-11-10T10:34:38Z",
+      "updatedAt": "2022-12-23T06:02:46Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOHUICes5Z8Kcl",
+      "title": "Comments on Encryption from Achim",
+      "url": "https://github.com/core-wg/attacks-on-coap/issues/6",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "emanjon"
+      ],
+      "labels": [],
+      "body": "https://mailarchive.ietf.org/arch/msg/core/BOG6xkClHS29vlQqUYaQBwZkB58/\r\n\r\nI appreciate the added statement about encryption in the abstract.\r\nDoes the\r\n\r\n\"Several of the discussed attacks can be mitigated with the solutions in\r\nRFC 9175.\"\r\n\r\nrequire the combination with encryption in order to mitigate the\r\nattacks? I think so.\r\n\r\nOverall, I'm wondering, if the preconditions of such attacks could be\r\ndocumented clearer?\r\n\r\nE.g. assuming an \"on-path-attacker\" RFC 9175 without encryption may be\r\nin vain.\r\n\r\nA couple of attacks assume, that tokens are reused frequently. In my\r\nexperience, that's not the case (except in cases, where someone stick to\r\n(re-)use the empty token to save bandwidth, or reuse tokens for\r\ntesting/debugging). Different tokens and replay-windows are then\r\ncreating also protection in a couple of cases.\r\n\r\nWith a list of preconditions it would be easier to see,\r\nif a system is affected by that attack or not.\r\n\r\nYou added \"availability\", but I miss the see an example, if there\r\nis a specific risk using coap.",
+      "createdAt": "2022-12-23T06:16:14Z",
+      "updatedAt": "2022-12-23T06:38:28Z",
       "closedAt": null,
       "comments": []
     }
